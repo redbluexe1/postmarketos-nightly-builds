@@ -64,7 +64,7 @@ jobs:
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-davinci.img
           cp /tmp/postmarketOS-export/xiaomi-davinci.img out/rootfs-xiaomi-davinci.img
           xz -T0 -9e -v out/rootfs-xiaomi-davinci.img
-          echo -e "n\nn\ny\n" | --no-spars
+          echo -e "n\nn\ny\n" | pmbootstrap zap
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
