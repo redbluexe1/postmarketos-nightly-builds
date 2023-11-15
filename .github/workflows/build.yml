@@ -59,67 +59,16 @@ jobs:
       - name: Build xiaomi-davinci
         run: |
           cp xiaomi-davinci.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap install --password 147147
+          pmbootstrap install --password 147147 --no-sparse
           pmbootstrap export
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-davinci.img
           cp /tmp/postmarketOS-export/xiaomi-davinci.img out/rootfs-xiaomi-davinci.img
           xz -T0 -9e -v out/rootfs-xiaomi-davinci.img
-          echo -e "n\nn\ny\n" | pmbootstrap zap
+          echo -e "n\nn\ny\n" | --no-spars
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: xiaomi-davinci-${{ matrix.version }}
           path: out/*-davinci.img*
-          retention-days: 7
-
-      - name: Build xiaomi-surya
-        run: |
-          cp xiaomi-surya.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap install --password 147147
-          pmbootstrap export
-          cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-surya.img
-          cp /tmp/postmarketOS-export/xiaomi-surya.img out/rootfs-xiaomi-surya.img
-          xz -T0 -9e -v out/rootfs-xiaomi-surya.img
-          echo -e "n\nn\ny\n" | pmbootstrap zap
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: xiaomi-surya-${{ matrix.version }}
-          path: out/*-surya.img*
-          retention-days: 7
-
-      - name: Build xiaomi-sweet
-        run: |
-          cp xiaomi-sweet.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap install --password 147147
-          pmbootstrap export
-          cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-sweet.img
-          cp /tmp/postmarketOS-export/xiaomi-sweet.img out/rootfs-xiaomi-sweet.img
-          xz -T0 -9e -v out/rootfs-xiaomi-sweet.img
-          echo -e "n\nn\ny\n" | pmbootstrap zap
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: xiaomi-sweet-${{ matrix.version }}
-          path: out/*-sweet.img*
-          retention-days: 7
-
-      - name: Build xiaomi-toco
-        run: |
-          cp xiaomi-toco.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap install --password 147147
-          pmbootstrap export
-          cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-toco.img
-          cp /tmp/postmarketOS-export/xiaomi-toco.img out/rootfs-xiaomi-toco.img
-          xz -T0 -9e -v out/rootfs-xiaomi-toco.img
-          echo -e "n\nn\ny\n" | pmbootstrap zap
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: xiaomi-toco-${{ matrix.version }}
-          path: out/*-toco.img*
           retention-days: 7
