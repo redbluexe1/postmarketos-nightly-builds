@@ -59,7 +59,7 @@ jobs:
       - name: Build xiaomi-davinci
         run: |
           cp xiaomi-davinci.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap install --password 147147 --no-sparse
+          pmbootstrap install --password 147147 --no-sparse --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-davinci.img
           cp /tmp/postmarketOS-export/xiaomi-davinci.img out/rootfs-xiaomi-davinci.img
