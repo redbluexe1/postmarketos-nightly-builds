@@ -31,17 +31,17 @@ jobs:
         run: |
           echo -e '\n\n' | pmbootstrap init || true
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
-          git remote add sm7150 https://github.com/sm7150-mainline/pmaports.git
+          git remote add sm7150 https://github.com/99degree/pmaports.git
           git fetch sm7150 master
           git reset --hard sm7150/master
 
       - name: Clone kernel sources
         run: |
-          git clone https://github.com/sm7150-mainline/linux.git --single-branch --branch ${{ matrix.version }} --depth 1
+          git clone https://github.com/99degree/linux.git --single-branch --branch ${{ matrix.version }} --depth 1
 
-      - name: Choose any SM7150 device in pmbootstrap to build kernel
+      - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
-          cp xiaomi-davinci.cfg ~/.config/pmbootstrap.cfg
+          cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
 
       - name: Compile kernel with envkernel
         run: |
@@ -56,9 +56,9 @@ jobs:
         run: |
           mkdir out
 
-      - name: Build xiaomi-davinci
+      - name: Build xiaomi-miatoll
         run: |
-          cp xiaomi-davinci.cfg ~/.config/pmbootstrap.cfg
+          cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
           pmbootstrap install --password 147147 --no-sparse --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/* out/
@@ -68,6 +68,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: xiaomi-davinci-${{ matrix.version }}
-          path: out/*-davinci.img*
+          name: xiaomi-miatoll-${{ matrix.version }}
+          path: out/*-miatoll.img*
           retention-days: 7
