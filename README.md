@@ -1,4 +1,4 @@
-# Nightly SM7150 PostmarketOS Builds
+# Nightly SM7125 PostmarketOS Builds
 
 This repository contains workflows and configurations to automatically build PostmarketOS edge images for SM7150 devices supported by our mainline kernel fork. These images are intended for testing purposes only and should make testing more accessible to people without the capabilities to compile the kernel from source.
 
@@ -10,4 +10,4 @@ The default user is called `user`, the password is `147147`, just like on offici
 
 ## Downloading
 
-Head to the [Actions tab](https://github.com/sm7150-mainline/nightly-builds/actions), select the most recent successful run and download the artifact for your device. Extract the Zip, de-compress the rootfs and you're ready to flash!
+Head to the [Actions tab](https://github.com/99degree/nightly-builds/actions), select the most recent successful run and download the artifact for your device. Extract the Zip, de-compress the rootfs and you're ready to flash!
