@@ -36,7 +36,7 @@ jobs:
           echo "merging local pmaport device files to upstream aport...."
           git remote add sm7150 https://github.com/99degree/pmaports.git
           git fetch sm7150 master
-          git merge -m "merge upstream" sm7150/master
+          git merge --author "root <abc.def.com>" -m "merge upstream" sm7150/master
 
       - name: Clone kernel sources
         run: |
