@@ -29,7 +29,7 @@ jobs:
 
       - name: Set up pmaports
         run: |
-          echo -e '\nedge\nxiaomi\ndavinci\ny\naarch64\nXiaomi\nMiatoll\n2020\nhandset\nn\ny\nnone\nuser\ngnome-mobile\nn\nnone\ny\nen_US\nxiaomi-miatoll\nn\ny\ny\n' | pmbootstrap --as-root init 
+          echo -e '\nv23.06\nxiaomi\nmiatoll\ny\naarch64\nXiaomi\nMiatoll\n2020\nhandset\nn\ny\nnone\nuser\ngnome-mobile\nn\nnone\ny\nen_US\nxiaomi-miatoll\nn\ny\ny\n' | pmbootstrap init 
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
           echo "since above init created device target, so delete it accordingly...."
           rm device/testing/device-xiaomi-miatoll -r
