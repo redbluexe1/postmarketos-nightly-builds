@@ -31,6 +31,7 @@ jobs:
         run: |
           echo -e '\n\n' | pmbootstrap init || true
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
+          git remote remove sm7150
           git remote add sm7150 https://github.com/99degree/pmaports.git
           git fetch sm7150 master
           git reset --hard sm7150/master
