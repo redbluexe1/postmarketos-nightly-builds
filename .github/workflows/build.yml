@@ -60,7 +60,7 @@ jobs:
           source ../pmbootstrap/helpers/envkernel.sh
           make defconfig sm7150.config
           make -j$(nproc)
-          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
+          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150-99degree
 
       - name: Create artifact directory
         run: |
