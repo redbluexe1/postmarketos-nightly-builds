@@ -26,6 +26,7 @@ jobs:
           mkdir -p ~/.local/bin
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           pmbootstrap --version
+          apk install py3-dt-schema
 
       - name: Set up pmaports
         run: |
