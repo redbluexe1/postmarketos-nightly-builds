@@ -40,11 +40,12 @@ jobs:
           echo "merging local pmaport device files to upstream aport...."
           #git config user.name "Your Name"
           #git config user.email "you@example.com"
-          git remote add sm7150 https://github.com/99degree/pmaports.git
-          git fetch sm7150 master
-          git checkout sm7150/master -f
-          #git fetch sm7150 v23.06
-          #git merge -m "merge upstream" sm7150/v23.06
+          git remote add 99degree https://github.com/99degree/pmaports.git
+          #git fetch 99degree master
+          #git checkout 99degree/master -f
+          #git fetch 99degree v23.06
+          #git merge -m "merge upstream" 99degree/v23.06
+          git checkout 99degree/v23.06 -f
 
       - name: Clone kernel sources
         run: |
@@ -57,11 +58,11 @@ jobs:
       - name: Compile kernel with envkernel
         run: |
           cd linux
-          shopt -s expand_aliases
-          source ../pmbootstrap/helpers/envkernel.sh
-          make defconfig sm7150.config
-          make -j$(nproc)
-          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150-99degree
+          #shopt -s expand_aliases
+          #source ../pmbootstrap/helpers/envkernel.sh
+          #make defconfig sm7150.config
+          #make -j$(nproc)
+          #pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150-99degree
 
       - name: Create artifact directory
         run: |
@@ -70,10 +71,7 @@ jobs:
       - name: Build xiaomi-miatoll
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap build device-xiaomi-miatoll
-          pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap -v install --password 147147 --no-sparse --split
-          pmbootstrap log
           pmbootstrap export
           cp /tmp/postmarketOS-export/* out/
           xz -T0 -9e -v out/*.img
