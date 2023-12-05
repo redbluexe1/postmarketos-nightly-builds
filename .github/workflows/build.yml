@@ -70,6 +70,8 @@ jobs:
       - name: Build xiaomi-miatoll
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
+          pmbootstrap build device-xiaomi-miatoll
+          pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap -v install --password 147147 --no-sparse --split
           pmbootstrap log
           pmbootstrap export
