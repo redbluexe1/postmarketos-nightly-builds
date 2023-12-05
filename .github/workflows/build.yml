@@ -38,13 +38,13 @@ jobs:
           #echo "since above init created device target, so delete it accordingly...."
           #rm device/testing/device-xiaomi-miatoll -r
           echo "merging local pmaport device files to upstream aport...."
-          #git config user.name "Your Name"
-          #git config user.email "you@example.com"
+          git config user.name "Your Name"
+          git config user.email "you@example.com"
           git remote add 99degree https://github.com/99degree/pmaports.git
-          #git fetch 99degree master
-          #git checkout 99degree/master -f
-          #git fetch 99degree v23.06
+          git fetch 99degree master
+          git fetch 99degree v23.06
           #git merge -m "merge upstream" 99degree/v23.06
+          #git checkout 99degree/master -f
           git checkout 99degree/v23.06 -f
 
       - name: Clone kernel sources
