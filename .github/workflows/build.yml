@@ -42,7 +42,7 @@ jobs:
           #git config user.email "you@example.com"
           git remote add sm7150 https://github.com/99degree/pmaports.git
           git fetch sm7150 master
-          git reset sm7150/master
+          git checkout sm7150/master -f
           #git fetch sm7150 v23.06
           #git merge -m "merge upstream" sm7150/v23.06
 
