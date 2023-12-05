@@ -9,7 +9,7 @@ jobs:
   build-image:
     strategy:
       matrix:
-        version: ["next", "v6.6"]
+        version: ["next", "v6.6.1"]
 
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +26,6 @@ jobs:
           mkdir -p ~/.local/bin
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           pmbootstrap --version
-          apk install py3-dt-schema
 
       - name: Set up pmaports
         run: |
