@@ -35,8 +35,8 @@ jobs:
           mkdir -p ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing
           #echo -e '\nv23.06\nxiaomi\nmiatoll\ny\naarch64\nXiaomi\nMiatoll\n2020\nhandset\nn\ny\nnone\nuser\ngnome-mobile\nn\nnone\ny\nen_US\nxiaomi-miatoll\nn\ny\ny\n' | pmbootstrap init 
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
-          echo "since above init created device target, so delete it accordingly...."
-          rm device/testing/device-xiaomi-miatoll -r
+          #echo "since above init created device target, so delete it accordingly...."
+          #rm device/testing/device-xiaomi-miatoll -r
           echo "merging local pmaport device files to upstream aport...."
           git config user.name "Your Name"
           git config user.email "you@example.com"
