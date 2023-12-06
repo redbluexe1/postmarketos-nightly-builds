@@ -16,20 +16,15 @@ jobs:
       - name: Check out build configurations
         uses: actions/checkout@v4
         
-      #- name: Install xmllint
-      #  run: sudo apt-get install -y py3-dt-schema
-
       - name: Substitute placeholders in configs
         run: |
           find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +
 
       - name: Install pmbootstrap from git
         run: |
-          #git clone --depth=1  --branch "2.0.0" https://git.sr.ht/~postmarketos/pmbootstrap
           git clone --depth=1 https://git.sr.ht/~postmarketos/pmbootstrap
-          cd pmbootstrap
-          git clean -fdx
-          cd ..
+          #py3-dt-schema only avail for edge channel
+          sed -i '/py3-dt-schema/d' pmbootstrap/helpers/envkernel.sh
           mkdir -p ~/.local/bin
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           pmbootstrap --version
@@ -37,13 +32,9 @@ jobs:
       - name: Set up pmaports
         run: |
           echo -e '\nv23.06\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
-          echo "ok, pmbootstrap init is done"
           # Since v23.06 do not have testing  folder, create it.
           mkdir -p ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing
-          #echo -e '\nv23.06\nxiaomi\nmiatoll\ny\naarch64\nXiaomi\nMiatoll\n2020\nhandset\nn\ny\nnone\nuser\ngnome-mobile\nn\nnone\ny\nen_US\nxiaomi-miatoll\nn\ny\ny\n' | pmbootstrap init 
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
-          #echo "since above init created device target, so delete it accordingly...."
-          #rm device/testing/device-xiaomi-miatoll -r
           echo "merging local pmaport device files to upstream aport...."
           git config user.name "Your Name"
           git config user.email "you@example.com"
@@ -67,8 +58,6 @@ jobs:
       - name: Compile kernel with envkernel
         run: |
           cd linux
-          #pmbootstrap chroot -- apk update
-          #pmbootstrap chroot -- apk add -u py3-dt-schema
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
           make defconfig xiaomi_miatoll.config
@@ -95,5 +84,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: xiaomi-miatoll-${{ matrix.version }}
-          path: out/*-miatoll*.img*
+          path: out/*miatoll*.img*
           retention-days: 7
