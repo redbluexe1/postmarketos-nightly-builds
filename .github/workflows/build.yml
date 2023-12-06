@@ -63,7 +63,7 @@ jobs:
       - name: Compile kernel with envkernel
         run: |
           cd linux
-          #pmbootstrap chroot -- apk update
+          pmbootstrap chroot -- apk update
           pmbootstrap chroot -- apk add py3-dt-schema
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
