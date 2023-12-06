@@ -11,3 +11,7 @@ The default user is called `user`, the password is `147147`, just like on offici
 ## Downloading
 
 Head to the [Actions tab](https://github.com/99degree/postmarket-nightly-builds/actions), select the most recent successful run and download the artifact for your device. Extract the Zip, de-compress the rootfs and you're ready to flash!
+
+## Mini wiki
+Here is a mini wiki for install and boot pmOS on Joyeuse (tianma panel)
+https://github.com/99degree/postmarket-nightly-builds/wiki/Boot-image-manipulation
