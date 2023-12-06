@@ -63,9 +63,9 @@ jobs:
           source ../pmbootstrap/helpers/envkernel.sh
           make defconfig xiaomi_miatoll.config
           make -j$(nproc)
-          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
           #to failsafe for private build...
           pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150-99degree
+          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
 
       - name: Create artifact directory
         run: |
