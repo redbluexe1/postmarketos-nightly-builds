@@ -16,8 +16,8 @@ jobs:
       - name: Check out build configurations
         uses: actions/checkout@v4
         
-      - name: Install xmllint
-        run: sudo apt-get install -y py3-dt-schema
+      #- name: Install xmllint
+      #  run: sudo apt-get install -y py3-dt-schema
 
       - name: Substitute placeholders in configs
         run: |
