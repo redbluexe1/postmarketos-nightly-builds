@@ -43,10 +43,10 @@ jobs:
           git remote add 99degree https://github.com/99degree/pmaports.git
           git fetch 99degree master
           git fetch 99degree v23.06
-          #git merge -m "merge upstream" 99degree/v23.06
           #Currently edge channel is not working...
-          #git checkout 99degree/master -f
-          git checkout 99degree/v23.06 -f
+          git checkout origin/v23.06 -f
+          git merge -m "merge upstreaam v23.06" 99degree/v23.06
+          #git checkout 99degree/v23.06 -f
 
       - name: Clone kernel sources
         run: |
@@ -83,5 +83,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: xiaomi-miatoll-${{ matrix.version }}
-          path: out/*-miatoll.img*
+          path: out/*-miatoll*.img*
           retention-days: 7
