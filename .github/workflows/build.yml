@@ -88,6 +88,6 @@ jobs:
           name: xiaomi-miatoll-${{ matrix.version }}
           path: |
             out/*miatoll*.img*
-            out/Imaage.gz
+            out/Image.gz
             out/*.dtb
           retention-days: 7
