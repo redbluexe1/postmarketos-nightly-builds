@@ -76,8 +76,6 @@ jobs:
           pmbootstrap -v install --password 147147 --no-sparse --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/* out/
-          cp linux/arch/arm64/boot/Image.gz out/
-          cp linux/arch/arm64/boot/dts/qcom/sm7125*.dtb out/
           xz -T0 -9e -v out/*.img
           ls -la out/
           echo -e "n\nn\ny\n" | pmbootstrap zap
@@ -86,8 +84,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: xiaomi-miatoll-${{ matrix.version }}
-          path: |
-            out/*miatoll*.img*
-            out/Image.gz
-            out/*.dtb
+          path: out/*miatoll*.img*
           retention-days: 7
