@@ -44,6 +44,7 @@ jobs:
           git fetch 99degree master
           git fetch 99degree v23.06
           #git merge -m "merge upstream" 99degree/v23.06
+          #Currently edge channel is not working...
           #git checkout 99degree/master -f
           git checkout 99degree/v23.06 -f
 
@@ -58,11 +59,11 @@ jobs:
       - name: Compile kernel with envkernel
         run: |
           cd linux
-          #shopt -s expand_aliases
-          #source ../pmbootstrap/helpers/envkernel.sh
-          #make defconfig sm7150.config
-          #make -j$(nproc)
-          #pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150-99degree
+          shopt -s expand_aliases
+          source ../pmbootstrap/helpers/envkernel.sh
+          make defconfig xiaomi_miatoll.config
+          make -j$(nproc)
+          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
 
       - name: Create artifact directory
         run: |
@@ -75,6 +76,7 @@ jobs:
           pmbootstrap export
           cp /tmp/postmarketOS-export/* out/
           xz -T0 -9e -v out/*.img
+          ls -la out/
           echo -e "n\nn\ny\n" | pmbootstrap zap
 
       - name: Upload artifacts
