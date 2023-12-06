@@ -27,6 +27,9 @@ jobs:
         run: |
           #git clone --depth=1  --branch "2.0.0" https://git.sr.ht/~postmarketos/pmbootstrap
           git clone --depth=1 https://git.sr.ht/~postmarketos/pmbootstrap
+          cd pmbootstrap
+          git clean -fdx
+          cd ..
           mkdir -p ~/.local/bin
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           pmbootstrap --version
@@ -51,6 +54,7 @@ jobs:
           git checkout origin/v23.06 -f
           git merge -m "merge upstreaam v23.06" 99degree/v23.06
           #git checkout 99degree/v23.06 -f
+          git clean -fdx
 
       - name: Clone kernel sources
         run: |
@@ -63,8 +67,8 @@ jobs:
       - name: Compile kernel with envkernel
         run: |
           cd linux
-          pmbootstrap chroot -- apk update
-          pmbootstrap chroot -- apk add -u py3-dt-schema
+          #pmbootstrap chroot -- apk update
+          #pmbootstrap chroot -- apk add -u py3-dt-schema
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
           make defconfig xiaomi_miatoll.config
