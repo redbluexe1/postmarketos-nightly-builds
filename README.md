@@ -1,6 +1,6 @@
 # Nightly SM7125 PostmarketOS Builds
 
-This repository contains workflows and configurations to automatically build PostmarketOS edge images for SM7150 devices supported by our mainline kernel fork. These images are intended for testing purposes only and should make testing more accessible to people without the capabilities to compile the kernel from source.
+This repository contains workflows and configurations to automatically build PostmarketOS edge images for SM7125 devices supported by our mainline kernel fork. These images are intended for testing purposes only and should make testing more accessible to people without the capabilities to compile the kernel from source.
 
 ## Image Information
 
