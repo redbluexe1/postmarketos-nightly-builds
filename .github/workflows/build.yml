@@ -64,13 +64,6 @@ jobs:
           make -j$(nproc)
           #to failsafe for private build...
           pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
-      
-      - name: Upload apk artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: linux-postmarketos-qcom-sm7150-${{ matrix.version }}
-          path: $HOME/.local/var/pmbootstrap/packages/linux-postmarketos-qcom-sm7150*
-          retention-days: 7
           
       - name: Create artifact directory
         run: |
