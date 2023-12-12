@@ -60,7 +60,6 @@ jobs:
           cd linux
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
-          make defconfig
           ./scripts/kconfig/merge_config.sh arch/arm64/configs/defconfig_RedmiJoyeuse
           make -j$(nproc)
           #to failsafe for private build...
