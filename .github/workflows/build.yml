@@ -41,7 +41,7 @@ jobs:
           git remote add 99degree https://github.com/99degree/pmaports.git
           git fetch origin master
           git fetch 99degree master
-          git fetch 99degree v23.06
+          #git fetch 99degree v23.06
           #Currently edge channel is not working...
           git checkout origin/master -f
           git merge -m "merge upstreaam master with local changes" 99degree/master
@@ -55,6 +55,9 @@ jobs:
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
+          pmbootstrap build device-xiaomi-miatoll
+          pmbootstrap build firmware-xiaomi-miatoll
+          pmbootstrap build soc-qcom-sm7150
 
       - name: Compile kernel with envkernel
         run: |
