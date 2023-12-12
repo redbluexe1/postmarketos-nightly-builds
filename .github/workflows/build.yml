@@ -60,10 +60,9 @@ jobs:
           cd linux
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
-          ./scripts/kconfig/merge_config.sh arch/arm64/configs/defconfig_RedmiJoyeuse
+          make defconfig arch/arm64/configs/defconfig_RedmiJoyeuse.config
           make -j$(nproc)
           #to failsafe for private build...
-          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150-99degree
           pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
 
       - name: Create artifact directory
