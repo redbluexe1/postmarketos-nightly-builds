@@ -22,7 +22,7 @@ jobs:
 
       - name: Install pmbootstrap from git
         run: |
-          git clone --depth=1 https://git.sr.ht/~postmarketos/pmbootstrap
+          git clone --depth=1 https://gitlab.com/postmarketOS/pmbootstrap.git
           #py3-dt-schema only avail for edge channel
           sed -i '/py3-dt-schema/d' pmbootstrap/helpers/envkernel.sh
           mkdir -p ~/.local/bin
