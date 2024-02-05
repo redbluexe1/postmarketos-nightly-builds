@@ -65,7 +65,8 @@ jobs:
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
           make defconfig xiaomi_miatoll.config
-          make -j$(nproc)
+          #make -j$(nproc)
+          make
           #to failsafe for private build...
           pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
           
