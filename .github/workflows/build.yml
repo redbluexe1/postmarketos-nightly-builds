@@ -77,7 +77,8 @@ jobs:
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
           #pmbootstrap config boot_size 256
-          pmbootstrap -v install --password 147147 --no-sparse --split
+          pmbootstrap --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" update --non-existing
+          pmbootstrap -v --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" install --password 147147 --no-sparse --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/* out/
           xz -T0 -9e -v out/*.img
