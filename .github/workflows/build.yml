@@ -76,7 +76,7 @@ jobs:
       - name: Build xiaomi-miatoll
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap config boot_size 256
+          #pmbootstrap config boot_size 256
           pmbootstrap -v install --password 147147 --no-sparse --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/* out/
