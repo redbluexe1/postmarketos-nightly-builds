@@ -56,10 +56,10 @@ jobs:
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
           pmbootstrap build adbd-linux
-          pmbootstrap build device-xiaomi-miatoll
           pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap build soc-qcom-sm7150
-
+          pmbootstrap build device-xiaomi-miatoll
+          
       - name: Compile kernel with envkernel
         run: |
           cd linux
