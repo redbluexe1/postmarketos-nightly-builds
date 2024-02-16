@@ -31,7 +31,7 @@ jobs:
 
       - name: Set up pmaports
         run: |
-          echo -e '\nv23.06\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
+          echo -e '\nv23.06\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           # Since v23.06 do not have testing  folder, create it.
           mkdir -p ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
