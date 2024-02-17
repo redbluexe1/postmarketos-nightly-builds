@@ -58,8 +58,7 @@ jobs:
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap build soc-qcom-sm7150
-          #since device apk depends on kernel apk, build it last.
-          #pmbootstrap build device-xiaomi-miatoll
+          pmbootstrap build device-xiaomi-miatoll
           
       - name: Compile kernel with envkernel
         run: |
@@ -78,7 +77,6 @@ jobs:
           make -j$(nproc)
           #to failsafe for private build...
           pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
-          pmbootstrap build device-xiaomi-miatoll
           
       - name: Create artifact directory
         run: |
