@@ -66,6 +66,8 @@ jobs:
           # there are many intermediate file generated and deleted by gcc, 
           # use tmpfs to hold and speed up the process. 
           # in case pmbootstrap or envkernel.sh have such thing this hack can removed.
+          # sounds like running mount non-root not allowed
+          unshare -m
           mount -t tmpfs none ~/.local/var/pmbootstrap/chroot_native/tmp
           mount -t tmpfs none /tmp
           cd linux
