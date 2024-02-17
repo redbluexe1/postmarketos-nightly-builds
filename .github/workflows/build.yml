@@ -48,18 +48,18 @@ jobs:
           #git checkout 99degree/v23.06 -f
           git clean -fdx
 
-      - name: Clone kernel sources
-        run: |
-          git clone https://github.com/99degree/linux.git --single-branch --branch ${{ matrix.version }} --depth 1
-
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
-          pmbootstrap build --force soc-qcom-sm7150
-          pmbootstrap build device-xiaomi-miatoll || pmbootstrap log
-          
+          pmbootstrap build soc-qcom-sm7150
+          pmbootstrap build device-xiaomi-miatoll
+
+      - name: Clone kernel sources
+        run: |
+          git clone https://github.com/99degree/linux.git --single-branch --branch ${{ matrix.version }} --depth 1
+
       - name: Compile kernel with envkernel
         run: |
           # there are many intermediate file generated and deleted by gcc, 
