@@ -63,6 +63,10 @@ jobs:
           
       - name: Compile kernel with envkernel
         run: |
+          # there are many intermediate file generated and deleted by gcc, 
+          # use tmpfs to hold and speed up the process. 
+          # in case pmbootstrap or envkernel.sh have such thing this hack can removed.
+          mount -t tmpfs none ~/.local/var/pmbootstrap/chroot_native/tmp
           cd linux
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
