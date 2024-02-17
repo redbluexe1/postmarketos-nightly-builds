@@ -58,7 +58,7 @@ jobs:
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap build --force soc-qcom-sm7150
-          pmbootstrap build device-xiaomi-miatoll
+          pmbootstrap build device-xiaomi-miatoll || pmbootstrap log
           
       - name: Compile kernel with envkernel
         run: |
