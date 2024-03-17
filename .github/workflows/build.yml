@@ -44,7 +44,7 @@ jobs:
           #git fetch 99degree v23.06
           #Currently edge channel is not working...
           git checkout origin/master -f
-          git merge -m "merge upstreaam master with local changes" 99degree/xiaomi-miatoll
+          git merge -m "merge upstreaam master with local changes" 99degree/xiaomi-miatoll-20240317
           #git checkout 99degree/v23.06 -f
           git clean -fdx
 
