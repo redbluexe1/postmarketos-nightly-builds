@@ -22,6 +22,7 @@ jobs:
           #sudo apt-get install -y gcc-aarch64-linux-gnu
           #sudo apt-get install -y binutils-aarch64-linux-gnu
           find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +  
+          echo "KERNEL_BRANCH=$DEFAULT_BRANCH" >> $GITHUB_ENV
   
       - name: Install pmbootstrap from git
         run: |
@@ -107,6 +108,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: xiaomi-miatoll-${{ env.KERNEL_BRANCH }}
+          name: xiaomi-miatoll-${{ matrix.version }}
           path: out/*-miatoll*.img
           retention-days: 7
