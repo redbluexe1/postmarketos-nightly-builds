@@ -18,8 +18,11 @@ jobs:
         
       - name: Substitute placeholders in configs
         run: |
+          sudo apt update
+          sudo apt install gcc-10 g++-10  
           find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +
-
+        shell: bash     
+  
       - name: Install pmbootstrap from git
         run: |
           git clone --depth=1 https://gitlab.com/postmarketOS/pmbootstrap.git
@@ -31,7 +34,7 @@ jobs:
 
       - name: Set up pmaports
         run: |
-          echo -e '\nv23.06\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
+          echo -e '\nedge\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           # Since v23.06 do not have testing  folder, create it.
           mkdir -p ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
