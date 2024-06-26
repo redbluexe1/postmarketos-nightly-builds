@@ -80,8 +80,8 @@ jobs:
           source ../pmbootstrap/helpers/envkernel.sh
 
           # fetch local config
-          git fetch 99degree config
-          git checkout 99degree/config -- arch/arm64/configs/sm71xx-xiaomi.config          
+          git fetch origin config
+          git checkout origin/config -- arch/arm64/configs/sm71xx-xiaomi.config          
 
           # apply local config
           make defconfig sm71xx-xiaomi.config
