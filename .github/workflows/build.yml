@@ -61,9 +61,6 @@ jobs:
       - name: Clone kernel sources
         run: |
           git clone https://github.com/99degree/linux.git --single-branch --branch ${{ matrix.version }} --depth 1
-          git remote add 99degree https://github.com/99degree/linux.git
-          git fetch 99degree config
-          git checkout 99degree/config -- arch/arm64/configs/sm71xx-xiaomi.config
 
       - name: Compile kernel with envkernel
         run: |
@@ -81,7 +78,8 @@ jobs:
 
           # fetch local config
           git fetch origin config
-          git checkout origin/config -- arch/arm64/configs/sm71xx-xiaomi.config          
+          git branch config FETCH_HEAD
+          git checkout config -- arch/arm64/configs/sm71xx-xiaomi.config          
 
           # apply local config
           make defconfig sm71xx-xiaomi.config
