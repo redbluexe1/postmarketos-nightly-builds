@@ -40,7 +40,7 @@ jobs:
           git config user.email "you@example.com"
           git remote add 99degree https://github.com/99degree/pmaports.git
           git fetch origin master
-          git fetch 99degree xiaomi-miatoll-20240317
+          git fetch 99degree next
           #git fetch 99degree v23.06
           #Currently edge channel is not working...
           git checkout origin/master -f
@@ -53,8 +53,6 @@ jobs:
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
-          pmbootstrap build soc-qcom-sm7150
-          pmbootstrap build device-xiaomi-miatoll
 
       - name: Clone kernel sources
         run: |
@@ -76,7 +74,7 @@ jobs:
           make defconfig xiaomi_miatoll.config
           make -j$(nproc)
           #to failsafe for private build...
-          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7150
+          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7125
           
       - name: Create artifact directory
         run: |
