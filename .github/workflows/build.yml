@@ -90,6 +90,7 @@ jobs:
       - name: Create artifact directory
         run: |
           mkdir out
+          mkdir out_raw
 
       - name: Build xiaomi-miatoll
         run: |
@@ -99,8 +100,8 @@ jobs:
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap -v --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" install --password 147147 --no-sparse --split
-          pmbootstrap export
-          cp /tmp/postmarketOS-export/* out/
+          pmbootstrap export out_raw/
+          cp -L out_raw/ out/
           xz -T0 -9e -v out/*.img
           ls -la out/
           echo -e "n\nn\ny\n" | pmbootstrap zap
