@@ -19,7 +19,7 @@ jobs:
       - name: Substitute placeholders in configs
         run: |
           sudo apt update
-          sudo apt install aarch64-linux-gnu-gcc
+          sudo apt install gcc-aarch64-linux-gnu
           find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +
         shell: bash     
   
@@ -60,6 +60,9 @@ jobs:
       - name: Clone kernel sources
         run: |
           git clone https://github.com/99degree/linux.git --single-branch --branch ${{ matrix.version }} --depth 1
+          git remote add 99degree https://github.com/99degree/linux.git
+          git fetch 99degree config
+          git checkout 99degree/config -- arch/arm64/configs/sm71xx-xiaomi.config
 
       - name: Compile kernel with envkernel
         run: |
