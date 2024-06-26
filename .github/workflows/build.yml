@@ -19,7 +19,7 @@ jobs:
       - name: Substitute placeholders in configs
         run: |
           sudo apt update
-          sudo apt install gcc-10 g++-10  
+          sudo apt install aarch64-linux-gnu-gcc
           find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +
         shell: bash     
   
