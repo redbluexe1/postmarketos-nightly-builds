@@ -102,7 +102,8 @@ jobs:
           pmbootstrap -v --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" install --password 147147 --no-sparse --split
           pmbootstrap export out_raw/
           ls -la out_raw/
-          cp -R -u -p -L out_raw/* out/
+          cp -R -u -p -L out_raw/* out/ | true
+          cp $HOME/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/* out/
           xz -T0 -9e -v out/*.img
           ls -la out/
           echo -e "n\nn\ny\n" | pmbootstrap zap
