@@ -110,5 +110,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: xiaomi-miatoll-${{ matrix.version }}
-          path: out/*-miatoll*.img
+          path: out/*-miatoll*.img*
           retention-days: 7
