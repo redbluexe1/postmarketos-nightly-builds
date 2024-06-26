@@ -101,8 +101,8 @@ jobs:
           pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap -v --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" install --password 147147 --no-sparse --split
           pmbootstrap export out_raw/
-          ls out_raw/
-          cp -L out_raw/* out/
+          ls -la out_raw/
+          cp -R -u -p -L out_raw/* out/
           xz -T0 -9e -v out/*.img
           ls -la out/
           echo -e "n\nn\ny\n" | pmbootstrap zap
