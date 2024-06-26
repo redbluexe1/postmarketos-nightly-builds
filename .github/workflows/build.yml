@@ -18,11 +18,10 @@ jobs:
         
       - name: Substitute placeholders in configs
         run: |
-          sudo apt update
-          sudo apt-get install -y gcc-aarch64-linux-gnu
-          sudo apt-get install -y binutils-aarch64-linux-gnu
-          find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +
-        shell: bash     
+          #sudo apt update
+          #sudo apt-get install -y gcc-aarch64-linux-gnu
+          #sudo apt-get install -y binutils-aarch64-linux-gnu
+          find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +  
   
       - name: Install pmbootstrap from git
         run: |
@@ -55,8 +54,6 @@ jobs:
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
-          pmbootstrap build adbd-linux
-          pmbootstrap build firmware-xiaomi-miatoll
 
       - name: Clone kernel sources
         run: |
@@ -98,6 +95,8 @@ jobs:
           #cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
           #pmbootstrap config boot_size 256
           pmbootstrap --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" update --non-existing
+          pmbootstrap build adbd-linux
+          pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap -v --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" install --password 147147 --no-sparse --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/* out/
