@@ -19,7 +19,8 @@ jobs:
       - name: Substitute placeholders in configs
         run: |
           sudo apt update
-          sudo apt install gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+          sudo apt install gcc-aarch64-linux-gnu
+          sudo apt install binutils-aarch64-linux-gnu
           find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +
         shell: bash     
   
@@ -77,7 +78,7 @@ jobs:
           cd linux
           shopt -s expand_aliases
           source ../pmbootstrap/helpers/envkernel.sh
-          make defconfig xiaomi_miatoll.config
+          make defconfig sm71xx-xiaomi.config
           make -j$(nproc)
           #to failsafe for private build...
           pmbootstrap build --envkernel linux-postmarketos-qcom-sm7125
