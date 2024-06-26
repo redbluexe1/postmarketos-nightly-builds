@@ -71,21 +71,22 @@ jobs:
           # mount -t tmpfs none ~/.local/var/pmbootstrap/chroot_native/tmp
           # mount -t tmpfs none /tmp
           cd linux
-          #shopt -s expand_aliases
-          #source ../pmbootstrap/helpers/envkernel.sh
+          shopt -s expand_aliases
+          source ../pmbootstrap/helpers/envkernel.sh
 
           # fetch local config
-          #git fetch origin config
-          #git branch config FETCH_HEAD
-          #git checkout config -- arch/arm64/configs/sm71xx-xiaomi.config          
+          git fetch origin config
+          git branch config FETCH_HEAD
+          git checkout config -- arch/arm64/configs/sm71xx-xiaomi.config          
 
           # apply local config
-          #make defconfig sm71xx-xiaomi.config
+          make defconfig sm71xx-xiaomi.config
 
           # make it
-          #make -j$(nproc)
+          make -j$(nproc)
+          
           #to failsafe for private build...
-          #pmbootstrap build --envkernel linux-postmarketos-qcom-sm7125
+          pmbootstrap build --envkernel linux-postmarketos-qcom-sm7125
           
       - name: Create artifact directory
         run: |
@@ -103,7 +104,12 @@ jobs:
           pmbootstrap export out_raw/
           ls -la out_raw/
           cp -R -u -p -L out_raw/* out/ | true
+
+          # pmbootstrap export do not work atm, cp manually
+          ls -la $HOME/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/*
           cp $HOME/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/* out/
+
+          # zip them all
           xz -T0 -9e -v out/*.img
           ls -la out/
           echo -e "n\nn\ny\n" | pmbootstrap zap
@@ -112,5 +118,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: xiaomi-miatoll-${{ matrix.version }}
-          path: out/*-miatoll*.img*
+          path: out/*
           retention-days: 7
