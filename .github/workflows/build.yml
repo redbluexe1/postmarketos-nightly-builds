@@ -97,11 +97,11 @@ jobs:
         run: |
           #cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
           #pmbootstrap config boot_size 256
-          pmbootstrap --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" update --non-existing
+          pmbootstrap update --non-existing
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap chroot apk add qcam
-          pmbootstrap -v --mirror-alpine "http://dl-cdn.alpinelinux.org/alpine/" install --password 147147 --no-sparse --split
+          pmbootstrap -v install --password 147147 --no-sparse --split
           #pmbootstrap chroot apk add qcam
           pmbootstrap export out_raw/
           ls -la out_raw/
