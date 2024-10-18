@@ -121,4 +121,4 @@ jobs:
         with:
           name: xiaomi-miatoll-${{ matrix.version }}
           path: out/*
-          retention-days: 7
+          retention-days: 15
