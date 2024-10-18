@@ -54,7 +54,7 @@ jobs:
 
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
-          cp xiaomi-miatoll.cfg ~/.config/pmbootstrap.cfg
+          cp xiaomi-miatoll.cfg ~/.config/pmbootstrap_v3.cfg
 
       - name: Clone kernel sources
         run: |
