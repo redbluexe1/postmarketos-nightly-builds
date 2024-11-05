@@ -15,3 +15,6 @@ Head to the [Actions tab](https://github.com/99degree/postmarket-nightly-builds/
 ## Mini wiki
 Here is a mini wiki for install and boot pmOS on Joyeuse (tianma panel)
 https://github.com/99degree/postmarket-nightly-builds/wiki/Boot-image-manipulation
+
+## Prebuild kernel and modules
+[HERE](https://github.com/99degree/linux/actions) is a github action build for linux kernel arm64 binary that is replaceable to pmos kernel also working fine with fastboot boot cmd. Feel free to download the weekly build of linux repo/next branch and use it with pmos initramfs to boot pmos rootfs.
