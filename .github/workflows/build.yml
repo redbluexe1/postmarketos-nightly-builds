@@ -122,3 +122,11 @@ jobs:
           name: xiaomi-miatoll-${{ matrix.version }}
           path: out/*
           retention-days: 15
+      - name: Release nightly
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: true
+          name: nightly
+          tag_name: nightly
+          files: out/xiaomi-miatoll-${{ matrix.version }}
+          fail_on_unmatched_files: true
