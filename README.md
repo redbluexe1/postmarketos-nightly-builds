@@ -6,13 +6,13 @@ This repository contains workflows and configurations to automatically build Pos
 
 ## Image Information
 
-The CI builds images once per week on fridays at midnight UTC. When completed, it will upload artifacts for each device that was built. These artifacts contain `boot.img` and an xz-compressed rootfs. Artifacts are kept for one week (i.e. until the next rebuild).
+The CI builds images once per week on fridays at midnight UTC. When completed, it will upload artifacts for miatoll device that was built. These artifacts contain `boot.img` and an xz-compressed rootfs. Artifacts are kept for one week (i.e. until the next rebuild).
 
 The default user is called `user`, the password is `147147`, just like on official PostmarketOS stable images.
 
 ## Downloading
 
-Head to the [Actions tab](https://github.com/99degree/postmarket-nightly-builds/actions), select the most recent successful run and download the artifact for your device. Extract the Zip, de-compress the rootfs and you're ready to flash!
+Head to the [Actions tab](https://github.com/99degree/postmarket-nightly-builds/actions), select the most recent successful run and download the artifact. Extract the Zip, de-compress the rootfs and you're ready to experiment!
 
 ## Mini wiki
 Here is a mini wiki for install and boot pmOS on Joyeuse (tianma panel)
