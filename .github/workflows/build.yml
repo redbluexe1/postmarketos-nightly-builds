@@ -64,6 +64,7 @@ jobs:
       - name: Build xiaomi-miatoll
         run: |
           cp pmbootstrap_v3.cfg ~/.config/pmbootstrap_v3.cfg
+          pmbootstrap config
           #pmbootstrap config boot_size 256
           pmbootstrap update --non-existing
           pmbootstrap build adbd-linux
