@@ -54,7 +54,7 @@ jobs:
 
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
-          cp pmbootstrap_v3.cfg ~/.config/pmbootstrap_v3.cfg
+          #cp pmbootstrap_v3.cfg ~/.config/pmbootstrap_v3.cfg
           
       - name: Create artifact directory
         run: |
@@ -63,7 +63,7 @@ jobs:
 
       - name: Build xiaomi-miatoll
         run: |
-          cp pmbootstrap_v3.cfg ~/.config/pmbootstrap_v3.cfg
+          #cp pmbootstrap_v3.cfg ~/.config/pmbootstrap_v3.cfg
           pmbootstrap config
           #pmbootstrap config boot_size 256
           pmbootstrap update --non-existing
