@@ -80,6 +80,7 @@ jobs:
           pmbootstrap config user  user
           #pmbootstrap config work  /home/user/.local/var/pmbootstrap
           uname -a
+          echo -e '\nedge\nxiaomi\nsurya\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           
       - name: Create artifact directory
         run: |
