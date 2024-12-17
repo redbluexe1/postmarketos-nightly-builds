@@ -33,6 +33,9 @@ jobs:
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           pmbootstrap --version
 
+          # remove ppc64 to workaround pmbootstrap for lacking alpine ppc64 platform
+          sed -i  's/Arch.ppc64le,/#Arch.ppc64le,/g'  pmbootstrap/pmb/core/arch.py
+
       - name: Set up pmaports
         run: |
           echo -e '\nedge\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
@@ -52,8 +55,6 @@ jobs:
           git merge -m "merge upstreaam master with local changes" 99degree/next
           #git checkout 99degree/v23.06 -f
           git clean -fdx
-          # remove ppc64 to workaround pmbootstrap for lacking alpine ppc64 platform
-          sed -i  's/Arch.ppc64le,/#Arch.ppc64le,/g'  pmbootstrap/pmb/core/arch.py
           
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
