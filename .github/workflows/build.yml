@@ -96,7 +96,7 @@ jobs:
           pmbootstrap config
           #pmbootstrap config boot_size 256
           # according to https://gitlab.postmarketos.org/postmarketOS/pmaports/-/merge_requests/5774
-          --non-existing should not add here 
+          # --non-existing should not add here 
           #pmbootstrap update --non-existing
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
