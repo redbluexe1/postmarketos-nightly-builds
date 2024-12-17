@@ -54,7 +54,30 @@ jobs:
 
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
-          #cp pmbootstrap_v3.cfg ~/.config/pmbootstrap_v3.cfg
+          pmbootstrap config auto_zap_misconfigured_chroots  no
+          pmbootstrap config boot_size  256
+          pmbootstrap config build_default_device_arch  False
+          pmbootstrap config build_pkgs_on_install  True
+          pmbootstrap config ccache_size  5G
+          pmbootstrap config device  xiaomi-miatoll
+          pmbootstrap config extra_packages  gspell
+          pmbootstrap config extra_space  0
+          pmbootstrap config hostname 
+          pmbootstrap config is_default_channel  False
+          pmbootstrap config jobs  5
+          pmbootstrap config kernel  joyeuse
+          pmbootstrap config keymap 
+          pmbootstrap config locale  en_US.UTF-8
+          pmbootstrap config qemu_redir_stdio  False
+          pmbootstrap config ssh_key_glob  ~/.ssh/*.pub
+          pmbootstrap config ssh_keys  False
+          pmbootstrap config sudo_timer  False
+          pmbootstrap config systemd  default
+          pmbootstrap config timezone  Asia/Hong_Kong
+          pmbootstrap config ui  phosh
+          pmbootstrap config ui_extras  False
+          pmbootstrap config user  user
+          pmbootstrap config work  /home/user/.local/var/pmbootstrap
           
       - name: Create artifact directory
         run: |
@@ -63,7 +86,6 @@ jobs:
 
       - name: Build xiaomi-miatoll
         run: |
-          #cp pmbootstrap_v3.cfg ~/.config/pmbootstrap_v3.cfg
           pmbootstrap config
           #pmbootstrap config boot_size 256
           pmbootstrap update --non-existing
