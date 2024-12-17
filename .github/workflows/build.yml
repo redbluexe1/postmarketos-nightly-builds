@@ -100,12 +100,13 @@ jobs:
           #pmbootstrap update --non-existing
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
+          pmbootstrap build soc-qcom-sm7150
           pmbootstrap chroot apk add qcam
           pmbootstrap chroot apk add opencv
           pmbootstrap chroot apk add py3-opencv
           pmbootstrap chroot apk add libcamera
-          pmbootstrap chroot apk add firmware-xiaomi-miatoll || true
-          pmbootstrap chroot apk add soc-qcom-sm7150 || true
+          pmbootstrap chroot apk add /mnt/pmbootstrap/packages/edge/aarch64/firmware-xiaomi-miatoll || true
+          pmbootstrap chroot apk add /mnt/pmbootstrap/packages/edge/aarch64/soc-qcom-sm7150 || true
           pmbootstrap -v install --password 147147 --no-sparse --split
           #pmbootstrap chroot apk add qcam
           pmbootstrap export out_raw/
