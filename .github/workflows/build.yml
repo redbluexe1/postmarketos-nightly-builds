@@ -59,7 +59,7 @@ jobs:
           pmbootstrap config build_default_device_arch  False
           pmbootstrap config build_pkgs_on_install  True
           pmbootstrap config ccache_size  5G
-          pmbootstrap config device  xiaomi-miatoll
+          pmbootstrap config device  xiaomi-surya
           pmbootstrap config extra_packages  gspell
           pmbootstrap config extra_space  0
           pmbootstrap config hostname 
