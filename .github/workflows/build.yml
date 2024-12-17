@@ -77,7 +77,7 @@ jobs:
           pmbootstrap config ui  phosh
           pmbootstrap config ui_extras  False
           pmbootstrap config user  user
-          pmbootstrap config work  /home/user/.local/var/pmbootstrap
+          #pmbootstrap config work  /home/user/.local/var/pmbootstrap
           
       - name: Create artifact directory
         run: |
