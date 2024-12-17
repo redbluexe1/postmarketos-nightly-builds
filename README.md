@@ -1,4 +1,4 @@
-［disclaimers: (1)this is a custom procedure compare to official pmos guide. please go through official guide and make sure it works for you first. (2)since pmbootstrap and pmaport is changing rapidly and this repo cant follow with official too closely so the action build always breaks.]
+［disclaimers: (1)this is a custom procedure compare to official pmos guide. please go through official guide and make sure it works for you first. (2)since pmbootstrap and pmaport is changing rapidly and this repo cant follow with official too closely so the action build might breaks.]
 
 # Nightly SM7125 PostmarketOS Builds
 
