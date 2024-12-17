@@ -35,7 +35,6 @@ jobs:
 
       - name: Set up pmaports
         run: |
-          pmbootstrap config device  xiaomi-surya
           echo -e '\nedge\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           # Since v23.06 do not have testing  folder, create it.
           mkdir -p ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing
