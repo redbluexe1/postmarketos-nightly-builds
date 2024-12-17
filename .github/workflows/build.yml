@@ -33,8 +33,10 @@ jobs:
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           pmbootstrap --version
 
+          # ccording to https://gitlab.postmarketos.org/postmarketOS/pmaports/-/merge_requests/5774
+          # this is not need to apply
           # remove ppc64 to workaround pmbootstrap for lacking alpine ppc64 platform
-          sed -i  's/Arch.ppc64le,/#Arch.ppc64le,/g'  pmbootstrap/pmb/core/arch.py
+          #sed -i  's/Arch.ppc64le,/#Arch.ppc64le,/g'  pmbootstrap/pmb/core/arch.py
 
       - name: Set up pmaports
         run: |
@@ -93,7 +95,9 @@ jobs:
         run: |
           pmbootstrap config
           #pmbootstrap config boot_size 256
-          pmbootstrap update --non-existing
+          # according to https://gitlab.postmarketos.org/postmarketOS/pmaports/-/merge_requests/5774
+          --non-existing should not add here 
+          #pmbootstrap update --non-existing
           pmbootstrap build adbd-linux
           pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap chroot apk add qcam
