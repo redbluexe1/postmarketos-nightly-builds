@@ -79,6 +79,7 @@ jobs:
           pmbootstrap config ui_extras  False
           pmbootstrap config user  user
           #pmbootstrap config work  /home/user/.local/var/pmbootstrap
+          uname -a
           
       - name: Create artifact directory
         run: |
