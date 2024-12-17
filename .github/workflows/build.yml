@@ -82,6 +82,7 @@ jobs:
           pmbootstrap config ui_extras  False
           pmbootstrap config user  user
           #pmbootstrap config work  /home/user/.local/var/pmbootstrap
+          pmbootstrap config extra_packages firmware-xiaomi-miatoll
           uname -a
           echo -e '\nedge\nxiaomi\nsurya\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           
@@ -103,7 +104,7 @@ jobs:
           pmbootstrap chroot apk add opencv
           pmbootstrap chroot apk add py3-opencv
           pmbootstrap chroot apk add libcamera
-          pmbootstrap chroot apk add firmware-xiaomi-miatoll
+          #pmbootstrap chroot apk add firmware-xiaomi-miatoll
           pmbootstrap chroot apk add soc-qcom-sm7150
           pmbootstrap -v install --password 147147 --no-sparse --split
           #pmbootstrap chroot apk add qcam
