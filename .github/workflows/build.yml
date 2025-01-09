@@ -82,7 +82,8 @@ jobs:
           pmbootstrap config ui_extras  False
           pmbootstrap config user  user
           #pmbootstrap config work  /home/user/.local/var/pmbootstrap
-          pmbootstrap config extra_packages firmware-xiaomi-miatoll
+          #pmbootstrap config extra_packages firmware-xiaomi-miatoll,adbd-linux
+          #pmbootstrap config extra_packages firmware-xiaomi-miatoll
           uname -a
           echo -e '\nedge\nxiaomi\nsurya\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           
