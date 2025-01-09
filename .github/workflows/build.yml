@@ -99,7 +99,7 @@ jobs:
           # --non-existing should not add here 
           #pmbootstrap update --non-existing
           pmbootstrap build adbd-linux
-          pmbootstrap build firmware-xiaomi-miatoll
+          #pmbootstrap build firmware-xiaomi-miatoll
           pmbootstrap -v install --password 147147 --no-sparse --split
           pmbootstrap export out_raw/
           ls -la out_raw/
