@@ -65,12 +65,12 @@ jobs:
           pmbootstrap config build_default_device_arch  False
           pmbootstrap config build_pkgs_on_install  True
           pmbootstrap config ccache_size  5G
-          pmbootstrap config device  xiaomi-surya
+          pmbootstrap config device  xiaomi-davinci
           pmbootstrap config extra_space  0
           pmbootstrap config hostname 
           pmbootstrap config is_default_channel  False
           pmbootstrap config jobs  5
-          pmbootstrap config kernel  joyeuse
+          pmbootstrap config kernel  huaxing
           pmbootstrap config keymap 
           pmbootstrap config locale  en_US.UTF-8
           pmbootstrap config qemu_redir_stdio  False
@@ -83,7 +83,7 @@ jobs:
           pmbootstrap config user  user
           #pmbootstrap config work  /home/user/.local/var/pmbootstrap
           #pmbootstrap config extra_packages firmware-xiaomi-miatoll,adbd-linux
-          #pmbootstrap config extra_packages firmware-xiaomi-miatoll
+          pmbootstrap config extra_packages firmware-xiaomi-miatoll
           uname -a
           echo -e '\nedge\nxiaomi\nsurya\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           
