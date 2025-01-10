@@ -96,6 +96,8 @@ jobs:
         run: |
           pmbootstrap config
           #pmbootstrap config boot_size 256
+          # looks like gh action remain some file of last build. 
+          pmbootstrap zap
           # according to https://gitlab.postmarketos.org/postmarketOS/pmaports/-/merge_requests/5774
           # --non-existing should not add here 
           #pmbootstrap update --non-existing
