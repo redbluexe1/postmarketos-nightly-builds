@@ -71,6 +71,8 @@ jobs:
       - name: Build xiaomi-curtana
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap_v3.cfg
+          pmbootstrap build adbd-linux
+          pmbootstrap config extra_packages adbd-linux
           pmbootstrap install --password 147147 --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-tianma-miatoll.img
