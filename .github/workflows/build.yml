@@ -71,13 +71,13 @@ jobs:
       - name: Build xiaomi-curtana
         run: |
           cp xiaomi-miatoll.cfg ~/.config/pmbootstrap_v3.cfg
-          pmbootstrap install --password 147147
+          pmbootstrap install --password 147147 --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-tianma-miatoll.img
           cp /tmp/postmarketOS-export/xiaomi-miatoll.img out/rootfs-xiaomi-miatoll.img
           #sed -i 's/tianma/huaxing/g' ~/.config/pmbootstrap_v3.cfg
-          pmbootstrap export
-          cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-huaxing-miatoll.img
+          #pmbootstrap export
+          #cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-huaxing-miatoll.img
           xz -T0 -9e -v out/rootfs-xiaomi-miatoll.img
           echo -e "n\nn\ny\n" | pmbootstrap zap
 
