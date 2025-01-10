@@ -57,8 +57,8 @@ jobs:
 
       - name: Compile kernel with envkernel
         run: |
-          cd linux
-          shopt -s expand_aliases
+          #cd linux
+          #shopt -s expand_aliases
           #source ../pmbootstrap/helpers/envkernel.sh
           #make defconfig sm7125.config
           #make -j$(nproc)
