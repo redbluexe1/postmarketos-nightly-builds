@@ -76,11 +76,11 @@ jobs:
           pmbootstrap install --password 147147 --split
           pmbootstrap export
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-tianma-miatoll.img
-          cp /tmp/postmarketOS-export/xiaomi-miatoll*.img out/
+          cp /tmp/postmarketOS-export/*xiaomi*.img out/
           #sed -i 's/tianma/huaxing/g' ~/.config/pmbootstrap_v3.cfg
           #pmbootstrap export
           #cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-huaxing-miatoll.img
-          xz -T0 -9e -v out/rootfs-xiaomi-miatoll.img
+          xz -T0 -9e -v out/rootfs-xiaomi-miatoll*.img
           echo -e "n\nn\ny\n" | pmbootstrap zap
 
       - name: Upload artifacts
