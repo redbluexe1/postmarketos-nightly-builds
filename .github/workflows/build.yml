@@ -87,7 +87,7 @@ jobs:
           #sed -i 's/tianma/huaxing/g' ~/.config/pmbootstrap_v3.cfg
           #pmbootstrap export
           #cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-huaxing-miatoll.img
-          xz -T0 -9e -v out/rootfs-xiaomi-miatoll*.img
+          xz -T0 -9e -v out/xiaomi-miatoll*.img
           echo -e "n\nn\ny\n" | pmbootstrap zap
 
       - name: Upload artifacts
