@@ -32,7 +32,7 @@ jobs:
 
       - name: Set up pmaports
         run: |
-          echo -e '\n\n' | pmbootstrap init || true
+          echo -e '\nedge\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
           git remote add sm7125 https://github.com/99degree/pmaports.git
           DEFAULT_BRANCH=$(git remote show sm7125 | awk '/HEAD branch/ {print $NF}')
