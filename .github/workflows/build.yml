@@ -1,125 +1,89 @@
-name: Build nightly images
+name: Build images
 on:
   push:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 5' # Run every friday at midnight
 
+env:
+  KERNEL_BRANCH: 6.12.1
+
 jobs:
   build-image:
     strategy:
       matrix:
-        version: ["next"]
+        version: ["default"]
 
     runs-on: ubuntu-latest
     steps:
       - name: Check out build configurations
         uses: actions/checkout@v4
-        
+
       - name: Substitute placeholders in configs
         run: |
-          #sudo apt update
-          #sudo apt-get install -y gcc-aarch64-linux-gnu
-          #sudo apt-get install -y binutils-aarch64-linux-gnu
-          find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +  
-          echo "KERNEL_BRANCH=$DEFAULT_BRANCH" >> $GITHUB_ENV
-  
+          find . -type f -name "*.cfg" -exec sed -i "s|HOME|$(echo $HOME)|;s|NPROC|$(nproc)|" {} +
+
       - name: Install pmbootstrap from git
         run: |
           git clone --depth=1 https://gitlab.postmarketos.org/postmarketOS/pmbootstrap.git
-          #py3-dt-schema only avail for edge channel
-          sed -i '/py3-dt-schema/d' pmbootstrap/helpers/envkernel.sh
           mkdir -p ~/.local/bin
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           pmbootstrap --version
 
-          # ccording to https://gitlab.postmarketos.org/postmarketOS/pmaports/-/merge_requests/5774
-          # this is not need to apply
-          # remove ppc64 to workaround pmbootstrap for lacking alpine ppc64 platform
-          #sed -i  's/Arch.ppc64le,/#Arch.ppc64le,/g'  pmbootstrap/pmb/core/arch.py
-
       - name: Set up pmaports
         run: |
-          echo -e '\nedge\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
-          # Since v23.06 do not have testing  folder, create it.
-          echo after pmbootstrap init
-          mkdir -p ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing
+          echo -e '\n\n' | pmbootstrap init || true
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
-          echo "merging local pmaport device files to upstream aport...."
-          git config user.name "Your Name"
-          git config user.email "you@example.com"
-          git remote add 99degree https://github.com/99degree/pmaports.git
-          git fetch origin master
-          git fetch 99degree next
-          #git fetch 99degree v23.06
-          #Currently edge channel is not working...
-          git checkout origin/master -f
+          git remote add sm7125 https://github.com/99degree/pmaports.git
+          DEFAULT_BRANCH=$(git remote show sm7125 | awk '/HEAD branch/ {print $NF}')
+          git fetch sm7125 $DEFAULT_BRANCH
+          #git reset --hard sm7125/$DEFAULT_BRANCH
           git checkout 99degree/next -- main/adbd-linux
-          #git checkout 99degree/v23.06 -f
-          git clean -fdx
-          
+
+      - name: Check kernel branch
+        if: matrix.version == 'default'
+        run: |
+          DEFAULT_BRANCH=$(curl -s  https://api.github.com/repos/sm7125-mainline/linux | jq -r '.default_branch')
+          echo "Default branch is $DEFAULT_BRANCH"
+          echo "KERNEL_BRANCH=$DEFAULT_BRANCH" >> $GITHUB_ENV
+
+      - name: Clone kernel sources
+        run: |
+          #git clone https://github.com/sm7125-mainline/linux.git --single-branch --branch ${{ env.KERNEL_BRANCH }} --depth 1 ./linux
+
       - name: Choose any SM7125 device in pmbootstrap to build kernel
         run: |
-          pmbootstrap config auto_zap_misconfigured_chroots  no
-          pmbootstrap config boot_size  256
-          pmbootstrap config build_default_device_arch  False
-          pmbootstrap config build_pkgs_on_install  True
-          pmbootstrap config ccache_size  5G
-          pmbootstrap config device  xiaomi-miatoll
-          pmbootstrap config extra_space  0
-          pmbootstrap config hostname 
-          pmbootstrap config is_default_channel  False
-          pmbootstrap config jobs  5
-          pmbootstrap config kernel  joyeuse_tianma
-          pmbootstrap config keymap 
-          pmbootstrap config locale  en_US.UTF-8
-          pmbootstrap config qemu_redir_stdio  False
-          pmbootstrap config ssh_key_glob  ~/.ssh/*.pub
-          pmbootstrap config ssh_keys  False
-          pmbootstrap config sudo_timer  False
-          pmbootstrap config systemd  default
-          pmbootstrap config ui  phosh
-          pmbootstrap config ui_extras  False
-          pmbootstrap config user  user
-          #pmbootstrap config work  /home/user/.local/var/pmbootstrap
-          #pmbootstrap config extra_packages adbd-linux
-          #pmbootstrap config extra_packages firmware-xiaomi-miatoll
-          uname -a
-          #echo -e '\nedge\nxiaomi\nsurya\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
-          
+          cp xiaomi-miatoll.cfg ~/.config/pmbootstrap_v3.cfg
+
+      - name: Compile kernel with envkernel
+        run: |
+          cd linux
+          shopt -s expand_aliases
+          #source ../pmbootstrap/helpers/envkernel.sh
+          #make defconfig sm7125.config
+          #make -j$(nproc)
+          #pmbootstrap build --envkernel linux-postmarketos-qcom-sm7125
+
       - name: Create artifact directory
         run: |
           mkdir out
-          mkdir out_raw
 
-      - name: Build xiaomi-miatoll
+      - name: Build xiaomi-curtana
         run: |
-          pmbootstrap config
-          #pmbootstrap config boot_size 256
-          # looks like gh action remain some file of last build. 
-          pmbootstrap zap
-          # according to https://gitlab.postmarketos.org/postmarketOS/pmaports/-/merge_requests/5774
-          # --non-existing should not add here 
-          #pmbootstrap update --non-existing
-          pmbootstrap build adbd-linux
-          #pmbootstrap build firmware-xiaomi-miatoll
-          pmbootstrap -v install --password 147147 --no-sparse --split
-          pmbootstrap export out_raw/
-          ls -la out_raw/
-          cp -R -u -p -L out_raw/* out/ | true
-
-          # pmbootstrap export do not work atm, cp manually
-          ls -la $HOME/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/*
-          cp $HOME/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/* out/
-
-          # zip them all
-          xz -T0 -9e -v out/*.img
-          ls -la out/
+          cp xiaomi-miatoll.cfg ~/.config/pmbootstrap_v3.cfg
+          pmbootstrap install --password 147147
+          pmbootstrap export
+          cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-tianma-miatoll.img
+          cp /tmp/postmarketOS-export/xiaomi-miatoll.img out/rootfs-xiaomi-miatoll.img
+          #sed -i 's/tianma/huaxing/g' ~/.config/pmbootstrap_v3.cfg
+          pmbootstrap export
+          cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-huaxing-miatoll.img
+          xz -T0 -9e -v out/rootfs-xiaomi-miatoll.img
           echo -e "n\nn\ny\n" | pmbootstrap zap
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: xiaomi-miatoll-${{ matrix.version }}
-          path: out/*
-          retention-days: 15
+          name: xiaomi-curtana-${{ env.KERNEL_BRANCH }}
+          path: out/*-miatoll.img*
+          retention-days: 7
