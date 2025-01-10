@@ -75,14 +75,14 @@ jobs:
           pmbootstrap config extra_packages adbd-linux
           pmbootstrap install --password 147147 --split
           pmbootstrap export
-          ls /tmp/postmarketOS-export/
+          ls /tmp/postmarketOS-export/ -la
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-tianma-miatoll.img
 
           # for case without "--split", the resulting file is xiaomi.img
-          cp /tmp/postmarketOS-export/*xiaomi*.img out/ || true
+          cp /tmp/postmarketOS-export/*miatoll*.img out/ || true
 
           # for case with split, the result file is xiaomi-root.img
-          cp /tmp/postmarketOS-export/*xiaomi-*.img out/ || true
+          cp /tmp/postmarketOS-export/*miatoll-*.img out/ || true
           
           #sed -i 's/tianma/huaxing/g' ~/.config/pmbootstrap_v3.cfg
           #pmbootstrap export
