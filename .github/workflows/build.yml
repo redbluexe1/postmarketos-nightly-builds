@@ -34,10 +34,10 @@ jobs:
         run: |
           echo -e '\nedge\nfairphone\nfp4\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
-          git remote add sm7125 https://github.com/99degree/pmaports.git
+          git remote add 99degree https://github.com/99degree/pmaports.git
           DEFAULT_BRANCH=$(git remote show sm7125 | awk '/HEAD branch/ {print $NF}')
-          git fetch sm7125 $DEFAULT_BRANCH
-          #git reset --hard sm7125/$DEFAULT_BRANCH
+          git fetch 99degree $DEFAULT_BRANCH
+          #git reset --hard 99degree/$DEFAULT_BRANCH
           git checkout 99degree/next -- main/adbd-linux
 
       - name: Check kernel branch
