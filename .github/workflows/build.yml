@@ -77,7 +77,13 @@ jobs:
           pmbootstrap export
           ls /tmp/postmarketOS-export/
           cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-tianma-miatoll.img
-          cp /tmp/postmarketOS-export/*xiaomi*.img out/
+
+          # for case without "--split", the resulting file is xiaomi.img
+          cp /tmp/postmarketOS-export/*xiaomi*.img out/ || true
+
+          # for case with split, the result file is xiaomi-root.img
+          cp /tmp/postmarketOS-export/*xiaomi-*.img out/ || true
+          
           #sed -i 's/tianma/huaxing/g' ~/.config/pmbootstrap_v3.cfg
           #pmbootstrap export
           #cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-huaxing-miatoll.img
