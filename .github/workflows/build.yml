@@ -85,7 +85,7 @@ jobs:
           pmbootstrap config extra_packages adbd-linux
           #pmbootstrap config extra_packages firmware-xiaomi-miatoll
           uname -a
-          echo -e '\nedge\nxiaomi\nsurya\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
+          #echo -e '\nedge\nxiaomi\nsurya\n\n\nphosh\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | pmbootstrap init || true
           
       - name: Create artifact directory
         run: |
