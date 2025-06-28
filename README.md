@@ -12,7 +12,7 @@ The default user is called `user`, the password is `147147`, just like on offici
 
 ## Downloading
 
-Head to the [Actions tab](https://github.com/99degree/postmarket-nightly-builds/actions), select the most recent successful run and download the artifact. Extract the Zip, de-compress the rootfs and you're ready to experiment!
+Head to the [Actions tab](https://github.com/redbluexe1/postmarket-nightly-builds/actions), select the most recent successful run and download the artifact. Extract the Zip, de-compress the rootfs and you're ready to experiment!
 
 ## Mini wiki
 Here is a mini wiki for install and boot pmOS on Joyeuse (tianma panel)
