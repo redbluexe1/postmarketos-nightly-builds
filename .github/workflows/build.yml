@@ -88,6 +88,11 @@ jobs:
           #pmbootstrap export
           #cp /tmp/postmarketOS-export/boot.img out/boot-xiaomi-huaxing-miatoll.img
           #xz -T0 -9e -v out/xiaomi-miatoll*.img
+          mkdir -p /tmp/postmarketOS-export/
+         cp /home/runner/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/xiaomi-miatoll-boot.img /tmp/postmarketOS-export/boot.img
+         cp /home/runner/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/xiaomi-miatoll-root.img /tmp/postmarketOS-export/root.img
+         cp /home/runner/.local/var/pmbootstrap/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-xiaomi-miatoll.zip /tmp/postmarketOS-export/
+
           echo -e "n\nn\ny\n" | pmbootstrap zap
 
       - name: Upload artifacts
